@@ -7,7 +7,7 @@ export function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 px-4 pt-4 sm:px-6">
       <nav className="glass-nav mx-auto flex max-w-6xl items-center justify-between rounded-2xl border border-border px-4 py-3 shadow-sm sm:px-6">
         <Link href="/">
-          <Logo size="sm" />
+          <Logo size="sm" text="Vevade" />
         </Link>
 
         <div className="hidden items-center gap-8 md:flex">

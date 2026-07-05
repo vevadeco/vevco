@@ -1,6 +1,7 @@
 type LogoProps = {
   size?: "sm" | "md" | "lg";
   showText?: boolean;
+  text?: string;
 };
 
 const sizes = {
@@ -9,7 +10,7 @@ const sizes = {
   lg: { box: "h-12 w-12", text: "text-xl", letter: "text-xl" },
 };
 
-export function Logo({ size = "md", showText = true }: LogoProps) {
+export function Logo({ size = "md", showText = true, text = "VevadeCo" }: LogoProps) {
   const s = sizes[size];
 
   return (
@@ -28,7 +29,7 @@ export function Logo({ size = "md", showText = true }: LogoProps) {
         </span>
       </div>
       {showText && (
-        <span className={`${s.text} font-bold tracking-tight`}>VevadeCo</span>
+        <span className={`${s.text} font-bold tracking-tight`}>{text}</span>
       )}
     </div>
   );
