@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# VevadeCo
 
-## Getting Started
+Marketing website and RFP lead management system for **VevadeCo** — a custom development and marketing agency.
 
-First, run the development server:
+## Features
+
+- High-converting landing page with product showcase
+- RFP proposal request form
+- Admin dashboard at `/admin` for lead management
+- Persistent lead storage (local filesystem or Vercel Blob)
+
+## Quick start (local)
 
 ```bash
+npm install
+cp .env.example .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000). Admin panel: [http://localhost:3000/admin](http://localhost:3000/admin) (default dev password: `vevadeco2026`).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deploy to production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+See **[DEPLOY.md](./DEPLOY.md)** for the full Vercel deployment guide.
 
-## Learn More
+## Project structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/              # Next.js App Router pages & API routes
+│   ├── admin/        # Lead management dashboard
+│   └── api/          # RFP submission & admin APIs
+├── components/       # UI components
+└── lib/              # Auth, leads, content
+public/images/        # Product screenshots
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Environment variables
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `ADMIN_PASSWORD` | Production | Password for `/admin` login |
+| `NEXT_PUBLIC_SITE_URL` | Production | Your domain (sitemap, OG tags) |
+| `BLOB_READ_WRITE_TOKEN` | Vercel | Persists leads across deployments |
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+See `.env.example` for details.
