@@ -1,3 +1,4 @@
+import { VevadeFooter } from "@/components/VevadeFooter";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { SmoothScroll } from "@/components/SmoothScroll";
@@ -56,9 +57,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} h-full`}>
-      <body className="min-h-full bg-background font-sans text-foreground antialiased">
+      <body className="min-h-full bg-background font-sans text-foreground antialiased flex min-h-full flex-col">
         <SmoothScroll />
         {children}
+        <VevadeFooter />
       </body>
     </html>
   );
