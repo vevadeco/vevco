@@ -44,7 +44,9 @@ In the Vercel import screen (or later under **Project → Settings → Environme
 |----------|-------|--------------|
 | `ADMIN_PASSWORD` | A strong password (e.g. generate with `openssl rand -base64 24`) | Production, Preview |
 | `NEXT_PUBLIC_SITE_URL` | `https://your-domain.com` (or your `.vercel.app` URL initially) | Production |
-| `BLOB_READ_WRITE_TOKEN` | Auto-generated in step 4 | Production, Preview |
+| `SENDLAYER_API_KEY` | API key from SendLayer | Production, Preview |
+| `SENDLAYER_FROM_EMAIL` | Sender on your verified SendLayer domain | Production, Preview |
+| `RFP_NOTIFICATION_EMAIL` | Address(es) that receive new-lead alerts | Production, Preview |
 
 > **Important:** `ADMIN_PASSWORD` is required in production. Without it, the admin login will fail.
 
@@ -56,9 +58,19 @@ Vercel serverless functions have **no persistent filesystem**. RFP leads must be
 2. Click **Create Database** → select **Blob**
 3. Name it (e.g. `vevadeco-leads`) and click **Create**
 4. Click **Connect to Project** and select your `vevadeco` project
-5. Vercel automatically adds `BLOB_READ_WRITE_TOKEN` to your environment variables
+5. Vercel automatically provides `BLOB_STORE_ID` and a rotating `VERCEL_OIDC_TOKEN`
 
-### 5. Deploy
+### 5. Configure SendLayer notifications
+
+1. Verify your sending domain in SendLayer
+2. Create a SendLayer API key
+3. Add `SENDLAYER_API_KEY`, `SENDLAYER_FROM_EMAIL`, and
+   `RFP_NOTIFICATION_EMAIL` to the Vercel project
+4. Optionally set `SENDLAYER_FROM_NAME` (defaults to `VevadeCo`)
+
+`RFP_NOTIFICATION_EMAIL` accepts multiple comma-separated addresses.
+
+### 6. Deploy
 
 Click **Deploy**. Vercel will:
 
@@ -68,7 +80,7 @@ Click **Deploy**. Vercel will:
 
 First deploy takes ~1–2 minutes.
 
-### 6. Verify the deployment
+### 7. Verify the deployment
 
 | Check | URL |
 |-------|-----|
@@ -118,9 +130,14 @@ vercel integration add blob
 ```bash
 vercel env add ADMIN_PASSWORD production
 vercel env add NEXT_PUBLIC_SITE_URL production
+vercel env add SENDLAYER_API_KEY production
+vercel env add SENDLAYER_FROM_EMAIL production
+vercel env add RFP_NOTIFICATION_EMAIL production
 ```
 
-`BLOB_READ_WRITE_TOKEN` is set automatically when you connect Blob storage.
+Connected Blob stores use `BLOB_STORE_ID` and Vercel's rotating
+`VERCEL_OIDC_TOKEN`. A static `BLOB_READ_WRITE_TOKEN` can be used outside
+Vercel.
 
 Pull env vars locally for development against Blob:
 
@@ -166,11 +183,17 @@ vercel --prod
 |----------|----------|-------------|
 | `ADMIN_PASSWORD` | **Yes** (production) | Secures `/admin` dashboard |
 | `NEXT_PUBLIC_SITE_URL` | Recommended | Canonical URL for SEO/sitemap |
-| `BLOB_READ_WRITE_TOKEN` | **Yes** (Vercel) | Persists RFP leads via Vercel Blob |
+| `BLOB_STORE_ID` | **Yes** (Vercel) | Identifies the connected Blob store |
+| `VERCEL_OIDC_TOKEN` | **Yes** (Vercel) | Rotating Blob credential supplied by Vercel |
+| `BLOB_READ_WRITE_TOKEN` | Outside Vercel | Static Blob credential fallback |
+| `SENDLAYER_API_KEY` | **Yes** (notifications) | Authenticates SendLayer API requests |
+| `SENDLAYER_FROM_EMAIL` | **Yes** (notifications) | Sender on a verified domain |
+| `SENDLAYER_FROM_NAME` | No | Sender display name |
+| `RFP_NOTIFICATION_EMAIL` | **Yes** (notifications) | Comma-separated alert recipients |
 
 ### Local development
 
-Without `BLOB_READ_WRITE_TOKEN`, leads save to `data/leads.json` on your machine.
+Without Blob credentials, leads save to `data/leads.json` on your machine.
 
 Without `ADMIN_PASSWORD`, the dev fallback password is `vevadeco2026`.
 
@@ -218,7 +241,7 @@ No CI config needed — Vercel handles build and deploy.
 
 ### Leads disappear after deploy
 
-**Cause:** `BLOB_READ_WRITE_TOKEN` is not set.
+**Cause:** The Blob store is not connected to the project.
 
 **Fix:** Create a Blob store and connect it to your project (see step 4 above).
 
@@ -240,7 +263,14 @@ The `turbopack.root` setting in `next.config.ts` resolves monorepo lockfile conf
 
 1. Check Vercel **Functions** logs: Project → Logs
 2. Confirm Blob storage is connected
-3. Verify `BLOB_READ_WRITE_TOKEN` exists in environment variables
+3. Verify `BLOB_STORE_ID` exists and redeploy after connecting the store
+
+### RFP saves but no notification email arrives
+
+1. Confirm `SENDLAYER_API_KEY`, `SENDLAYER_FROM_EMAIL`, and
+   `RFP_NOTIFICATION_EMAIL` are set for the deployment environment
+2. Confirm the sender domain is verified in SendLayer
+3. Check Vercel **Functions** logs for the SendLayer response
 
 ### Images not loading
 

@@ -41,6 +41,10 @@ public/images/        # Product screenshots
 |----------|----------|-------------|
 | `ADMIN_PASSWORD` | Production | Password for `/admin` login |
 | `NEXT_PUBLIC_SITE_URL` | Production | Your domain (sitemap, OG tags) |
-| `BLOB_READ_WRITE_TOKEN` | Vercel | Persists leads across deployments |
+| `BLOB_STORE_ID` + `VERCEL_OIDC_TOKEN` | Vercel | Added automatically when the Blob store is connected |
+| `BLOB_READ_WRITE_TOKEN` | Outside Vercel | Static fallback for Blob access |
+| `SENDLAYER_API_KEY` | Notifications | SendLayer API key |
+| `SENDLAYER_FROM_EMAIL` | Notifications | Sender on a SendLayer-verified domain |
+| `RFP_NOTIFICATION_EMAIL` | Notifications | Recipient(s), separated by commas |
 
 See `.env.example` for details.

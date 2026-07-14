@@ -1,6 +1,7 @@
-import { NextResponse } from "next/server";
+import { after, NextResponse } from "next/server";
 import { validateRFP, type RFPFormData } from "@/lib/rfp";
 import { createLead } from "@/lib/leads";
+import { sendLeadNotification } from "@/lib/sendlayer";
 
 export async function POST(request: Request) {
   try {
@@ -28,8 +29,17 @@ export async function POST(request: Request) {
       description: data.description!,
     });
 
+    after(async () => {
+      try {
+        await sendLeadNotification(lead);
+      } catch (error) {
+        console.error("Failed to send RFP email notification", error);
+      }
+    });
+
     return NextResponse.json({ success: true, id: lead.id });
-  } catch {
+  } catch (error) {
+    console.error("Failed to process RFP submission", error);
     return NextResponse.json(
       { error: "Failed to process submission" },
       { status: 500 }
