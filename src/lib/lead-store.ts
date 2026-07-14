@@ -7,7 +7,7 @@ const BLOB_PATHNAME = "vevadeco/leads.json";
 const DATA_DIR = path.join(process.cwd(), "data");
 const LEADS_FILE = path.join(DATA_DIR, "leads.json");
 
-function useBlobStorage(): boolean {
+function hasBlobCredentials(): boolean {
   const hasStaticToken = Boolean(process.env.BLOB_READ_WRITE_TOKEN);
   const hasOidcCredentials = Boolean(
     process.env.BLOB_STORE_ID && process.env.VERCEL_OIDC_TOKEN
@@ -53,14 +53,14 @@ async function writeLeadsToBlob(leads: Lead[]): Promise<void> {
 }
 
 export async function loadLeads(): Promise<Lead[]> {
-  if (useBlobStorage()) {
+  if (hasBlobCredentials()) {
     return readLeadsFromBlob();
   }
   return readLeadsFromFile();
 }
 
 export async function saveLeads(leads: Lead[]): Promise<void> {
-  if (useBlobStorage()) {
+  if (hasBlobCredentials()) {
     await writeLeadsToBlob(leads);
     return;
   }
@@ -68,14 +68,14 @@ export async function saveLeads(leads: Lead[]): Promise<void> {
 }
 
 export function getStorageMode(): "blob" | "filesystem" {
-  return useBlobStorage() ? "blob" : "filesystem";
+  return hasBlobCredentials() ? "blob" : "filesystem";
 }
 
 // Migrate legacy local JSONL file (filesystem mode only)
 export async function migrateLegacySubmissions(
   leads: Lead[]
 ): Promise<Lead[]> {
-  if (useBlobStorage()) return leads;
+  if (hasBlobCredentials()) return leads;
 
   const jsonlPath = path.join(DATA_DIR, "rfp-submissions.jsonl");
   try {
