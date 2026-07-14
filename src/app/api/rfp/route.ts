@@ -1,7 +1,6 @@
 import { after, NextResponse } from "next/server";
 import { validateRFP, type RFPFormData } from "@/lib/rfp";
-import { createLead } from "@/lib/leads";
-import { LeadStorageError } from "@/lib/lead-store";
+import { createLead, LeadStorageError } from "@/lib/leads";
 import { sendLeadNotification } from "@/lib/sendlayer";
 
 export const runtime = "nodejs";
@@ -10,10 +9,9 @@ function storageErrorMessage(error: unknown): string | null {
   const message = error instanceof Error ? error.message : String(error);
 
   if (
-    message.includes("BLOB_READ_WRITE_TOKEN") ||
-    message.includes("BlobStoreNotFound") ||
-    message.includes("store") ||
-    message.includes("token")
+    message.includes("DATABASE_URL") ||
+    message.includes("connection") ||
+    message.includes("ECONNREFUSED")
   ) {
     return "Lead storage is not configured on the server. Please try again later or contact us directly.";
   }

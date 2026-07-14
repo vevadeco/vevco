@@ -50,15 +50,17 @@ In the Vercel import screen (or later under **Project → Settings → Environme
 
 > **Important:** `ADMIN_PASSWORD` is required in production. Without it, the admin login will fail.
 
-### 4. Create a Vercel Blob store (required for lead persistence)
+### 4. Create a Neon Postgres database (required for lead persistence)
 
-Vercel serverless functions have **no persistent filesystem**. RFP leads must be stored in Vercel Blob.
+Vercel serverless functions have **no persistent filesystem**. RFP leads are stored in **Neon Postgres**.
 
 1. In your Vercel project dashboard, go to **Storage**
-2. Click **Create Database** → select **Blob**
+2. Click **Create Database** → select **Neon**
 3. Name it (e.g. `vevadeco-leads`) and click **Create**
-4. Click **Connect to Project** and select your `vevadeco` project
-5. Vercel automatically provides `BLOB_STORE_ID` and a rotating `VERCEL_OIDC_TOKEN`
+4. Click **Connect to Project** and select your project
+5. Vercel automatically adds `DATABASE_URL` to your environment variables
+
+The `leads` table is created automatically on the first RFP submission. You can also run `schema.sql` manually in the Neon SQL editor if you prefer.
 
 ### 5. Configure SendLayer notifications
 
@@ -118,11 +120,11 @@ vercel link
 
 Follow the prompts to create or link a Vercel project.
 
-### 3. Create Blob storage
+### 3. Create Neon database
 
 ```bash
-# Or create via dashboard: Storage → Blob → Create
-vercel integration add blob
+# Or create via dashboard: Storage → Neon → Create
+vercel integration add neon
 ```
 
 ### 4. Set environment variables
@@ -135,11 +137,9 @@ vercel env add SENDLAYER_FROM_EMAIL production
 vercel env add RFP_NOTIFICATION_EMAIL production
 ```
 
-Connected Blob stores use `BLOB_STORE_ID` and Vercel's rotating
-`VERCEL_OIDC_TOKEN`. A static `BLOB_READ_WRITE_TOKEN` can be used outside
-Vercel.
+`DATABASE_URL` is set automatically when you connect a Neon database to the project.
 
-Pull env vars locally for development against Blob:
+Pull env vars locally for development against Neon:
 
 ```bash
 vercel env pull .env.local
@@ -183,9 +183,7 @@ vercel --prod
 |----------|----------|-------------|
 | `ADMIN_PASSWORD` | **Yes** (production) | Secures `/admin` dashboard |
 | `NEXT_PUBLIC_SITE_URL` | Recommended | Canonical URL for SEO/sitemap |
-| `BLOB_STORE_ID` | **Yes** (Vercel) | Identifies the connected Blob store |
-| `VERCEL_OIDC_TOKEN` | **Yes** (Vercel) | Rotating Blob credential supplied by Vercel |
-| `BLOB_READ_WRITE_TOKEN` | Outside Vercel | Static Blob credential fallback |
+| `DATABASE_URL` | **Yes** (production) | Neon Postgres connection string (pooled) |
 | `SENDLAYER_API_KEY` | **Yes** (notifications) | Authenticates SendLayer API requests |
 | `SENDLAYER_FROM_EMAIL` | **Yes** (notifications) | Sender on a verified domain |
 | `SENDLAYER_FROM_NAME` | No | Sender display name |
@@ -193,7 +191,7 @@ vercel --prod
 
 ### Local development
 
-Without Blob credentials, leads save to `data/leads.json` on your machine.
+Without `DATABASE_URL`, leads save to `data/leads.json` on your machine.
 
 Without `ADMIN_PASSWORD`, the dev fallback password is `vevadeco2026`.
 
@@ -222,7 +220,7 @@ cp .env.example .env.local
 | Environment | Storage |
 |-------------|---------|
 | Local dev | `data/leads.json` (gitignored) |
-| Vercel | Private Vercel Blob at `vevadeco/leads.json` |
+| Production | Neon Postgres `leads` table |
 
 ---
 
@@ -241,9 +239,9 @@ No CI config needed — Vercel handles build and deploy.
 
 ### Leads disappear after deploy
 
-**Cause:** The Blob store is not connected to the project.
+**Cause:** `DATABASE_URL` is not set or Neon is not connected.
 
-**Fix:** Create a Blob store and connect it to your project (see step 4 above).
+**Fix:** Create a Neon database and connect it to your project (see step 4 above).
 
 ### Admin login returns 500
 
@@ -262,8 +260,8 @@ The `turbopack.root` setting in `next.config.ts` resolves monorepo lockfile conf
 ### RFP form submits but lead doesn't appear
 
 1. Check Vercel **Functions** logs: Project → Logs
-2. Confirm Blob storage is connected
-3. Verify `BLOB_STORE_ID` exists and redeploy after connecting the store
+2. Confirm Neon database is connected
+3. Verify `DATABASE_URL` exists and redeploy after connecting the database
 
 ### RFP saves but no notification email arrives
 
@@ -286,7 +284,7 @@ public/images/profit-hunter-screenshot.png
 ## Security checklist before going live
 
 - [ ] Set a strong `ADMIN_PASSWORD` (20+ characters)
-- [ ] Connect Vercel Blob for lead persistence
+- [ ] Connect Neon Postgres for lead persistence
 - [ ] Set `NEXT_PUBLIC_SITE_URL` to your real domain
 - [ ] Add custom domain with HTTPS (automatic on Vercel)
 - [ ] Test RFP submission end-to-end
@@ -324,4 +322,4 @@ vercel promote <deployment-url>
 
 - [Vercel Documentation](https://vercel.com/docs)
 - [Next.js Deployment](https://nextjs.org/docs/app/getting-started/deploying)
-- [Vercel Blob Docs](https://vercel.com/docs/storage/vercel-blob)
+- [Neon Documentation](https://neon.tech/docs)

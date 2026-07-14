@@ -7,7 +7,7 @@ Marketing website and RFP lead management system for **VevadeCo** — a custom d
 - High-converting landing page with product showcase
 - RFP proposal request form
 - Admin dashboard at `/admin` for lead management
-- Persistent lead storage (local filesystem or Vercel Blob)
+- Persistent lead storage (Neon Postgres, with local filesystem fallback for dev)
 
 ## Quick start (local)
 
@@ -41,8 +41,7 @@ public/images/        # Product screenshots
 |----------|----------|-------------|
 | `ADMIN_PASSWORD` | Production | Password for `/admin` login |
 | `NEXT_PUBLIC_SITE_URL` | Production | Your domain (sitemap, OG tags) |
-| `BLOB_STORE_ID` + `VERCEL_OIDC_TOKEN` | Vercel | Added automatically when the Blob store is connected |
-| `BLOB_READ_WRITE_TOKEN` | Outside Vercel | Static fallback for Blob access |
+| `DATABASE_URL` | Production | Neon Postgres connection string |
 | `SENDLAYER_API_KEY` | Notifications | SendLayer API key |
 | `SENDLAYER_FROM_EMAIL` | Notifications | Sender on a SendLayer-verified domain |
 | `RFP_NOTIFICATION_EMAIL` | Notifications | Recipient(s), separated by commas |
