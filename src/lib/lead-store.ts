@@ -1,4 +1,4 @@
-import { put, head } from "@vercel/blob";
+import { get, put } from "@vercel/blob";
 import { readFile, writeFile, mkdir } from "fs/promises";
 import path from "path";
 import type { Lead } from "./lead-types";
@@ -8,7 +8,12 @@ const DATA_DIR = path.join(process.cwd(), "data");
 const LEADS_FILE = path.join(DATA_DIR, "leads.json");
 
 function useBlobStorage(): boolean {
-  return Boolean(process.env.BLOB_READ_WRITE_TOKEN);
+  const hasStaticToken = Boolean(process.env.BLOB_READ_WRITE_TOKEN);
+  const hasOidcCredentials = Boolean(
+    process.env.BLOB_STORE_ID && process.env.VERCEL_OIDC_TOKEN
+  );
+
+  return hasStaticToken || hasOidcCredentials;
 }
 
 async function readLeadsFromFile(): Promise<Lead[]> {
@@ -27,14 +32,15 @@ async function writeLeadsToFile(leads: Lead[]): Promise<void> {
 }
 
 async function readLeadsFromBlob(): Promise<Lead[]> {
-  try {
-    const meta = await head(BLOB_PATHNAME);
-    const res = await fetch(meta.url);
-    if (!res.ok) return [];
-    return (await res.json()) as Lead[];
-  } catch {
-    return [];
-  }
+  const result = await get(BLOB_PATHNAME, {
+    access: "private",
+    useCache: false,
+  });
+
+  if (!result || result.statusCode !== 200) return [];
+
+  const raw = await new Response(result.stream).text();
+  return JSON.parse(raw) as Lead[];
 }
 
 async function writeLeadsToBlob(leads: Lead[]): Promise<void> {
