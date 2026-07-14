@@ -1,4 +1,4 @@
-import { get, put } from "@vercel/blob";
+import { get, put, BlobNotFoundError } from "@vercel/blob";
 import { readFile, writeFile, mkdir } from "fs/promises";
 import path from "path";
 import type { Lead } from "./lead-types";
@@ -8,12 +8,11 @@ const DATA_DIR = path.join(process.cwd(), "data");
 const LEADS_FILE = path.join(DATA_DIR, "leads.json");
 
 function hasBlobCredentials(): boolean {
-  const hasStaticToken = Boolean(process.env.BLOB_READ_WRITE_TOKEN);
-  const hasOidcCredentials = Boolean(
-    process.env.BLOB_STORE_ID && process.env.VERCEL_OIDC_TOKEN
-  );
-
-  return hasStaticToken || hasOidcCredentials;
+  if (process.env.BLOB_READ_WRITE_TOKEN) return true;
+  if (process.env.BLOB_STORE_ID) return true;
+  // On Vercel, Blob auth uses OIDC automatically when a store is connected
+  if (process.env.VERCEL === "1") return true;
+  return false;
 }
 
 async function readLeadsFromFile(): Promise<Lead[]> {
@@ -32,15 +31,17 @@ async function writeLeadsToFile(leads: Lead[]): Promise<void> {
 }
 
 async function readLeadsFromBlob(): Promise<Lead[]> {
-  const result = await get(BLOB_PATHNAME, {
-    access: "private",
-    useCache: false,
-  });
+  try {
+    const result = await get(BLOB_PATHNAME, { access: "private" });
+    if (!result || result.statusCode !== 200 || !result.stream) return [];
 
-  if (!result || result.statusCode !== 200) return [];
-
-  const raw = await new Response(result.stream).text();
-  return JSON.parse(raw) as Lead[];
+    const raw = await new Response(result.stream).text();
+    if (!raw.trim()) return [];
+    return JSON.parse(raw) as Lead[];
+  } catch (error) {
+    if (error instanceof BlobNotFoundError) return [];
+    throw error;
+  }
 }
 
 async function writeLeadsToBlob(leads: Lead[]): Promise<void> {
@@ -71,7 +72,13 @@ export function getStorageMode(): "blob" | "filesystem" {
   return hasBlobCredentials() ? "blob" : "filesystem";
 }
 
-// Migrate legacy local JSONL file (filesystem mode only)
+export class LeadStorageError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "LeadStorageError";
+  }
+}
+
 export async function migrateLegacySubmissions(
   leads: Lead[]
 ): Promise<Lead[]> {

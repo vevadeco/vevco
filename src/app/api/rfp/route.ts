@@ -1,13 +1,34 @@
 import { after, NextResponse } from "next/server";
 import { validateRFP, type RFPFormData } from "@/lib/rfp";
 import { createLead } from "@/lib/leads";
+import { LeadStorageError } from "@/lib/lead-store";
 import { sendLeadNotification } from "@/lib/sendlayer";
+
+export const runtime = "nodejs";
+
+function storageErrorMessage(error: unknown): string | null {
+  const message = error instanceof Error ? error.message : String(error);
+
+  if (
+    message.includes("BLOB_READ_WRITE_TOKEN") ||
+    message.includes("BlobStoreNotFound") ||
+    message.includes("store") ||
+    message.includes("token")
+  ) {
+    return "Lead storage is not configured on the server. Please try again later or contact us directly.";
+  }
+
+  if (message.includes("EROFS") || message.includes("read-only")) {
+    return "Lead storage is not available. Please contact us directly.";
+  }
+
+  return null;
+}
 
 export async function POST(request: Request) {
   try {
     const data: Partial<RFPFormData> & { website?: string } = await request.json();
 
-    // Honeypot — silently accept but don't save
     if (data.website) {
       return NextResponse.json({ success: true, id: "ok" });
     }
@@ -32,16 +53,26 @@ export async function POST(request: Request) {
     after(async () => {
       try {
         await sendLeadNotification(lead);
-      } catch (error) {
-        console.error("Failed to send RFP email notification", error);
+      } catch (notifyError) {
+        console.error("[RFP] Failed to send email notification:", notifyError);
       }
     });
 
     return NextResponse.json({ success: true, id: lead.id });
-  } catch (error) {
-    console.error("Failed to process RFP submission", error);
+  } catch (err) {
+    console.error("[RFP] Submission failed:", err);
+
+    if (err instanceof LeadStorageError) {
+      return NextResponse.json({ error: err.message }, { status: 503 });
+    }
+
+    const friendly = storageErrorMessage(err);
+    if (friendly) {
+      return NextResponse.json({ error: friendly }, { status: 503 });
+    }
+
     return NextResponse.json(
-      { error: "Failed to process submission" },
+      { error: "Failed to process submission. Please try again or contact us directly." },
       { status: 500 }
     );
   }
