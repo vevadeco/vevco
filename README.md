@@ -7,6 +7,7 @@ Marketing website and RFP lead management system for **VevadeCo** — a custom d
 - High-converting landing page with product showcase
 - RFP proposal request form
 - Admin dashboard at `/admin` for lead management
+- Proposal Studio at `/admin/proposals` for branded PDF generation
 - Persistent lead storage (local filesystem or Vercel Blob)
 
 ## Quick start (local)
@@ -28,7 +29,7 @@ See **[DEPLOY.md](./DEPLOY.md)** for the full Vercel deployment guide.
 ```
 src/
 ├── app/              # Next.js App Router pages & API routes
-│   ├── admin/        # Lead management dashboard
+│   ├── admin/        # Lead management and Proposal Studio
 │   └── api/          # RFP submission & admin APIs
 ├── components/       # UI components
 └── lib/              # Auth, leads, content
