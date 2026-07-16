@@ -22,7 +22,7 @@ export async function POST(request: Request) {
 
   try {
     const result = validateProposal(await request.json());
-    if (result.error) {
+    if ("error" in result) {
       return Response.json({ error: result.error }, { status: 400 });
     }
 
