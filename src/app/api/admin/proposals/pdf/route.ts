@@ -1,4 +1,3 @@
-import { createElement } from "react";
 import { renderToBuffer } from "@react-pdf/renderer";
 import { isAuthenticated } from "@/lib/auth";
 import { ProposalDocument } from "@/lib/proposal-pdf";
@@ -28,9 +27,7 @@ export async function POST(request: Request) {
     }
 
     const proposal = result.data;
-    const buffer = await renderToBuffer(
-      createElement(ProposalDocument, { proposal })
-    );
+    const buffer = await renderToBuffer(ProposalDocument({ proposal }));
 
     return new Response(new Uint8Array(buffer), {
       headers: {
