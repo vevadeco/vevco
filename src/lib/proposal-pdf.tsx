@@ -1,11 +1,14 @@
 import {
   Document,
+  Font,
   Page,
   StyleSheet,
   Text,
   View,
 } from "@react-pdf/renderer";
 import type { ProposalData } from "./proposal";
+
+Font.registerHyphenationCallback((word) => [word]);
 
 const colors = {
   ink: "#111827",
@@ -352,9 +355,13 @@ const styles = StyleSheet.create({
     width: "46%",
     textAlign: "center",
   },
-  footerPage: {
+  footerMeta: {
     width: "23%",
-    textAlign: "right",
+    flexDirection: "row",
+    justifyContent: "flex-end",
+  },
+  footerPage: {
+    marginLeft: 4,
   },
 });
 
@@ -407,12 +414,15 @@ function Footer({
         <Text style={styles.footerBrandName}>VevadeCo</Text>
       </View>
       <Text style={styles.footerClient}>Prepared for {preparedFor}</Text>
-      <Text
-        style={styles.footerPage}
-        render={({ pageNumber, totalPages }) =>
-          `${formatDate(proposal.proposalDate)}  •  ${pageNumber}/${totalPages}`
-        }
-      />
+      <View style={styles.footerMeta}>
+        <Text>{formatDate(proposal.proposalDate)}  •</Text>
+        <Text
+          style={styles.footerPage}
+          render={({ pageNumber, totalPages }) =>
+            `${pageNumber}/${totalPages}`
+          }
+        />
+      </View>
     </View>
   );
 }
