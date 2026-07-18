@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
   LogOut,
@@ -12,6 +13,7 @@ import {
   Trash2,
   X,
   Loader2,
+  FileText,
 } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { LEAD_STATUSES, type Lead, type LeadStatus } from "@/lib/lead-types";
@@ -27,7 +29,6 @@ export function AdminDashboard() {
   const router = useRouter();
 
   const fetchLeads = useCallback(async () => {
-    setLoading(true);
     try {
       const res = await fetch("/api/admin/leads");
       if (res.status === 401) {
@@ -122,8 +123,18 @@ export function AdminDashboard() {
             </div>
           </div>
           <div className="flex items-center gap-2">
+            <Link
+              href="/admin/proposals"
+              className="inline-flex items-center gap-1.5 rounded-full bg-accent px-4 py-2 text-sm font-semibold text-white transition hover:bg-accent-hover"
+            >
+              <FileText className="h-4 w-4" />
+              <span className="hidden sm:inline">Create proposal</span>
+            </Link>
             <button
-              onClick={fetchLeads}
+              onClick={() => {
+                setLoading(true);
+                void fetchLeads();
+              }}
               className="rounded-lg border border-border p-2 text-muted hover:bg-gray-50"
               title="Refresh"
             >
@@ -318,6 +329,23 @@ export function AdminDashboard() {
                   {selected.description}
                 </p>
               </div>
+
+              <Link
+                href={{
+                  pathname: "/admin/proposals",
+                  query: {
+                    name: selected.name,
+                    company: selected.company,
+                    email: selected.email,
+                    description: selected.description,
+                    projectType: selected.projectType,
+                  },
+                }}
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-accent-hover"
+              >
+                <FileText className="h-4 w-4" />
+                Create proposal for this lead
+              </Link>
 
               <div>
                 <div className="mb-2 text-xs font-medium text-muted">Status</div>
