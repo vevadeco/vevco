@@ -15,34 +15,45 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://vevadeco.com";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "VevadeCo — Custom Development & Marketing Agency",
+    default:
+      "VevadeCo — Web, App & Shopify Development in Burlington, Hamilton, Brantford & St. Catharines",
     template: "%s | VevadeCo",
   },
   description:
-    "VevadeCo builds custom web applications, lead generation systems, and AI tools. Request a free proposal for your next project.",
+    "Since 2012, VevadeCo has delivered web development, app development, and Shopify development for businesses in Burlington, Hamilton, Brantford, and St. Catharines. Request a free proposal.",
   keywords: [
+    "web development Burlington",
+    "web development Hamilton",
+    "web development Brantford",
+    "web development St. Catharines",
+    "app development Burlington",
+    "app development Hamilton",
+    "app development Brantford",
+    "app development St. Catharines",
+    "Shopify development",
+    "Shopify development Ontario",
     "custom software development",
     "lead generation",
-    "marketing agency",
     "SaaS development",
-    "web applications",
     "VevadeCo",
   ],
   authors: [{ name: "VevadeCo" }],
   openGraph: {
-    title: "VevadeCo — Custom Solutions That Convert",
+    title:
+      "VevadeCo — Web, App & Shopify Development Since 2012",
     description:
-      "Development and marketing agency specializing in custom SaaS platforms, lead systems, and AI-powered tools.",
+      "Custom web development, app development, and Shopify development for Burlington, Hamilton, Brantford, and St. Catharines businesses.",
     type: "website",
     url: siteUrl,
     siteName: "VevadeCo",
-    locale: "en_US",
+    locale: "en_CA",
   },
   twitter: {
     card: "summary_large_image",
-    title: "VevadeCo — Custom Solutions That Convert",
+    title:
+      "VevadeCo — Web, App & Shopify Development Since 2012",
     description:
-      "We build custom web apps, lead systems, and AI tools tailored to your business.",
+      "Web, app, and Shopify development for Burlington, Hamilton, Brantford, and St. Catharines — operating since 2012.",
   },
   robots: {
     index: true,

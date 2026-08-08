@@ -1,9 +1,10 @@
-import { Code2, Target, Sparkles, BarChart3 } from "lucide-react";
+import { Code2, Target, Sparkles, BarChart3, ShoppingBag } from "lucide-react";
 import { services } from "@/lib/content";
 import { FadeIn } from "@/components/FadeIn";
 
 const iconMap = {
   code: Code2,
+  shopping: ShoppingBag,
   target: Target,
   sparkles: Sparkles,
   chart: BarChart3,
@@ -16,11 +17,12 @@ export function Services() {
         <FadeIn className="mb-14 text-center">
           <p className="section-eyebrow mb-3">What We Do</p>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            End-to-end custom solutions
+            Web, app &amp; Shopify development
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-muted">
-            As a development and marketing agency, we handle strategy, design,
-            development, and launch — one team that owns the full stack.
+            Since 2012 we&apos;ve helped businesses in Burlington, Hamilton,
+            Brantford, and St. Catharines with strategy, design, development,
+            and launch — one team that owns the full stack.
           </p>
         </FadeIn>
 

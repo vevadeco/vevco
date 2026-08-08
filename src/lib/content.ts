@@ -1,3 +1,10 @@
+export const serviceAreas = [
+  "Burlington",
+  "Hamilton",
+  "Brantford",
+  "St. Catharines",
+] as const;
+
 export const products = [
   {
     id: "floorhub",
@@ -51,10 +58,16 @@ export const products = [
 
 export const services = [
   {
-    title: "Custom Web Applications",
+    title: "Web & App Development",
     description:
-      "Full-stack SaaS platforms, dashboards, and internal tools tailored to how your business actually operates.",
+      "Custom websites, web applications, and mobile-ready apps for businesses in Burlington, Hamilton, Brantford, and St. Catharines — built around how you actually operate.",
     icon: "code",
+  },
+  {
+    title: "Shopify Development",
+    description:
+      "Theme builds, custom Shopify apps, migrations, and conversion-focused storefronts that sell — from launch to scale.",
+    icon: "shopping",
   },
   {
     title: "Lead Generation Systems",
@@ -71,7 +84,7 @@ export const services = [
   {
     title: "Marketing & Growth",
     description:
-      "SEO, paid acquisition strategy, and conversion optimization to scale what's already working.",
+      "Local SEO, paid acquisition strategy, and conversion optimization to help Southern Ontario businesses scale what's already working.",
     icon: "chart",
   },
 ] as const;
@@ -122,12 +135,22 @@ export const faqs = [
   {
     question: "What types of projects does VevadeCo take on?",
     answer:
-      "We specialize in custom web applications, lead generation systems, AI-powered tools, and marketing automation. If you need software built around your business — not the other way around — we're a fit.",
+      "We specialize in web development, app development, Shopify development, lead generation systems, AI-powered tools, and marketing automation. If you need software built around your business — not the other way around — we're a fit.",
+  },
+  {
+    question: "Do you serve Burlington, Hamilton, Brantford, and St. Catharines?",
+    answer:
+      "Yes. We've been operating since 2012 and regularly partner with businesses across Burlington, Hamilton, Brantford, and St. Catharines for web development, app development, and Shopify projects — while also supporting clients beyond Southern Ontario.",
+  },
+  {
+    question: "Can you help with Shopify stores and custom Shopify apps?",
+    answer:
+      "Absolutely. Shopify development is a core specialty — from theme customization and store launches to custom apps, checkout improvements, and migrations that keep your catalog and SEO intact.",
   },
   {
     question: "How long does a typical project take?",
     answer:
-      "Lead generation sites launch in 2–4 weeks. SaaS platforms and complex tools typically run 6–12 weeks depending on scope. We'll give you an exact timeline in your proposal.",
+      "Lead generation sites and Shopify storefronts often launch in 2–4 weeks. SaaS platforms and complex apps typically run 6–12 weeks depending on scope. We'll give you an exact timeline in your proposal.",
   },
   {
     question: "What's included in a proposal?",
@@ -137,7 +160,7 @@ export const faqs = [
   {
     question: "Do you work with startups and established businesses?",
     answer:
-      "Both. We've built products from zero for new ventures and replaced legacy systems for established operators. Budget and timeline flex to match where you are.",
+      "Both. We've built products from zero for new ventures and replaced legacy systems for established operators since 2012. Budget and timeline flex to match where you are.",
   },
   {
     question: "What happens after I submit an RFP?",
@@ -147,7 +170,7 @@ export const faqs = [
 ] as const;
 
 export const stats = [
-  { value: "Free", label: "Discovery calls" },
+  { value: "2012", label: "Operating since" },
   { value: "48hr", label: "Proposal turnaround" },
   { value: "100%", label: "Custom-built solutions" },
 ] as const;
