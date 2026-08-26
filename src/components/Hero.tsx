@@ -27,11 +27,11 @@ export function Hero() {
 
             <FadeIn delay={100}>
               <p className="mt-6 text-lg leading-relaxed text-muted sm:text-xl">
-                VevadeCo is a development and marketing agency that designs,
-                builds, and launches software tailored to your operations — not
-                generic templates. From SaaS platforms to lead systems and AI
-                tools, every project starts with your problem and ends with a
-                shipped product.
+                Operating since 2012, VevadeCo designs and ships custom web
+                development, app development, and Shopify development for
+                businesses in Burlington, Hamilton, Brantford, and St.
+                Catharines — software tailored to your operations, not generic
+                templates.
               </p>
             </FadeIn>
 

@@ -17,15 +17,49 @@ const jsonLd = {
   "@type": "ProfessionalService",
   name: "VevadeCo",
   description:
-    "Custom development and marketing agency building web applications, lead systems, and AI tools.",
+    "Since 2012, VevadeCo has provided web development, app development, and Shopify development for businesses in Burlington, Hamilton, Brantford, and St. Catharines.",
   url: siteUrl,
+  foundingDate: "2012",
   serviceType: [
+    "Web Development",
+    "App Development",
+    "Shopify Development",
     "Custom Software Development",
     "Lead Generation Systems",
     "Marketing Services",
     "AI Solutions",
   ],
-  areaServed: "Worldwide",
+  areaServed: [
+    {
+      "@type": "City",
+      name: "Burlington",
+      containedInPlace: { "@type": "AdministrativeArea", name: "Ontario" },
+    },
+    {
+      "@type": "City",
+      name: "Hamilton",
+      containedInPlace: { "@type": "AdministrativeArea", name: "Ontario" },
+    },
+    {
+      "@type": "City",
+      name: "Brantford",
+      containedInPlace: { "@type": "AdministrativeArea", name: "Ontario" },
+    },
+    {
+      "@type": "City",
+      name: "St. Catharines",
+      containedInPlace: { "@type": "AdministrativeArea", name: "Ontario" },
+    },
+    "Ontario",
+    "Canada",
+  ],
+  knowsAbout: [
+    "Web development",
+    "App development",
+    "Shopify development",
+    "Lead generation systems",
+    "AI and automation",
+  ],
 };
 
 export default function Home() {

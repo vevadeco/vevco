@@ -16,9 +16,9 @@ export function CTABanner() {
                 Ready to build something custom?
               </h2>
               <p className="mx-auto mt-4 max-w-xl text-gray-300">
-                Whether it&apos;s a lead system, SaaS platform, or AI tool — we
-                turn your brief into a shipped product. Start with a free
-                proposal.
+                Whether it&apos;s a website, app, Shopify store, lead system, or
+                AI tool — we turn your brief into a shipped product. Start with
+                a free proposal.
               </p>
               <Link
                 href="#rfp"

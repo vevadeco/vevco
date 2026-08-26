@@ -11,7 +11,8 @@ export function Footer() {
               <Logo />
             </Link>
             <p className="mt-3 max-w-xs text-sm text-muted">
-              Custom development and marketing solutions built around your business.
+              Web, app, and Shopify development for Burlington, Hamilton,
+              Brantford, and St. Catharines — operating since 2012.
             </p>
           </div>
 
@@ -43,8 +44,14 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 border-t border-border pt-8 text-center text-sm text-muted sm:text-left">
-          &copy; {new Date().getFullYear()} VevadeCo. All rights reserved.
+        <div className="mt-10 border-t border-border pt-8 text-sm text-muted">
+          <p className="text-center sm:text-left">
+            Serving Burlington · Hamilton · Brantford · St. Catharines
+          </p>
+          <p className="mt-2 text-center sm:text-left">
+            &copy; {new Date().getFullYear()} VevadeCo. All rights reserved.
+            Operating since 2012.
+          </p>
         </div>
       </div>
     </footer>

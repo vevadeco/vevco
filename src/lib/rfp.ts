@@ -11,6 +11,9 @@ export type RFPFormData = {
 };
 
 export const projectTypes = [
+  "Web Development",
+  "App Development",
+  "Shopify Development",
   "Custom Web Application",
   "Lead Generation / CRM",
   "AI / Automation Tool",
