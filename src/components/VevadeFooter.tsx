@@ -8,7 +8,7 @@ export function VevadeFooter() {
         target="_blank"
         rel="noopener noreferrer"
       >
-        VevadeCo
+        Vevade
       </a>
     </footer>
   );

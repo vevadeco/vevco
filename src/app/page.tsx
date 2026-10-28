@@ -9,66 +9,21 @@ import { RFPForm } from "@/components/RFPForm";
 import { CTABanner } from "@/components/CTABanner";
 import { Footer } from "@/components/Footer";
 import { MobileCTA } from "@/components/MobileCTA";
+import { JsonLd } from "@/components/JsonLd";
+import { faqs } from "@/lib/content";
+import { pageMetadata } from "@/lib/seo";
+import { faqPageJsonLd, HOME_DESCRIPTION, HOME_TITLE } from "@/lib/site";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://vevadeco.com";
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  name: "VevadeCo",
-  description:
-    "Since 2012, VevadeCo has provided web development, app development, and Shopify development for businesses in Burlington, Hamilton, Brantford, and St. Catharines.",
-  url: siteUrl,
-  foundingDate: "2012",
-  serviceType: [
-    "Web Development",
-    "App Development",
-    "Shopify Development",
-    "Custom Software Development",
-    "Lead Generation Systems",
-    "Marketing Services",
-    "AI Solutions",
-  ],
-  areaServed: [
-    {
-      "@type": "City",
-      name: "Burlington",
-      containedInPlace: { "@type": "AdministrativeArea", name: "Ontario" },
-    },
-    {
-      "@type": "City",
-      name: "Hamilton",
-      containedInPlace: { "@type": "AdministrativeArea", name: "Ontario" },
-    },
-    {
-      "@type": "City",
-      name: "Brantford",
-      containedInPlace: { "@type": "AdministrativeArea", name: "Ontario" },
-    },
-    {
-      "@type": "City",
-      name: "St. Catharines",
-      containedInPlace: { "@type": "AdministrativeArea", name: "Ontario" },
-    },
-    "Ontario",
-    "Canada",
-  ],
-  knowsAbout: [
-    "Web development",
-    "App development",
-    "Shopify development",
-    "Lead generation systems",
-    "AI and automation",
-  ],
-};
+export const metadata = pageMetadata({
+  title: HOME_TITLE,
+  description: HOME_DESCRIPTION,
+  path: "/",
+});
 
 export default function Home() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={faqPageJsonLd(faqs)} />
       <Header />
       <main className="pb-20 md:pb-0">
         <Hero />

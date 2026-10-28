@@ -17,7 +17,7 @@ export function FAQ() {
             Everything you need to know
           </h2>
           <p className="mt-4 text-muted">
-            Common questions before starting a project with VevadeCo.
+            Common questions before starting a project with Vevade.
           </p>
         </FadeIn>
 
@@ -40,11 +40,15 @@ export function FAQ() {
                       }`}
                     />
                   </button>
-                  {isOpen && (
-                    <div className="border-t border-border px-6 pb-5 pt-2">
-                      <p className="leading-relaxed text-muted">{faq.answer}</p>
-                    </div>
-                  )}
+                  <div
+                    className={
+                      isOpen
+                        ? "border-t border-border px-6 pb-5 pt-2"
+                        : "hidden border-t border-border px-6 pb-5 pt-2"
+                    }
+                  >
+                    <p className="leading-relaxed text-muted">{faq.answer}</p>
+                  </div>
                 </div>
               </FadeIn>
             );

@@ -17,21 +17,20 @@ export function Hero() {
           <div className="text-center lg:text-left">
             <FadeIn>
               <h1 className="text-4xl font-extrabold leading-[1.08] tracking-tight text-foreground sm:text-5xl lg:text-[3.25rem]">
-                We build{" "}
+                Web, app, and{" "}
                 <span className="bg-gradient-to-r from-accent via-violet-600 to-cyan-500 bg-clip-text text-transparent">
-                  custom solutions
+                  Shopify development
                 </span>{" "}
-                that your business actually needs
+                for Hamilton, Burlington, and Niagara
               </h1>
             </FadeIn>
 
             <FadeIn delay={100}>
               <p className="mt-6 text-lg leading-relaxed text-muted sm:text-xl">
-                Operating since 2012, VevadeCo designs and ships custom web
-                development, app development, and Shopify development for
-                businesses in Burlington, Hamilton, Brantford, and St.
-                Catharines — software tailored to your operations, not generic
-                templates.
+                Since 2012, Vevade has designed and shipped custom websites,
+                web apps, and Shopify stores for businesses in Hamilton,
+                Burlington, Oakville, St. Catharines, and the Niagara region —
+                software tailored to how you operate, not a generic template.
               </p>
             </FadeIn>
 

@@ -12,19 +12,19 @@ export function Header() {
 
         <div className="hidden items-center gap-8 md:flex">
           <Link
-            href="#work"
+            href="/#work"
             className="text-sm font-medium text-muted transition-colors hover:text-foreground"
           >
             Our Work
           </Link>
           <Link
-            href="#services"
+            href="/#services"
             className="text-sm font-medium text-muted transition-colors hover:text-foreground"
           >
             Services
           </Link>
           <Link
-            href="#process"
+            href="/#process"
             className="text-sm font-medium text-muted transition-colors hover:text-foreground"
           >
             Process

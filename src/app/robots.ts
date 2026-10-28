@@ -1,14 +1,21 @@
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://vevadeco.com";
+import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/site";
 
-export default function robots() {
+const publicRules = {
+  allow: "/",
+  disallow: ["/admin", "/api/"],
+};
+
+export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      {
-        userAgent: "*",
-        allow: "/",
-        disallow: ["/admin", "/api/"],
-      },
+      { userAgent: "*", ...publicRules },
+      { userAgent: "OAI-SearchBot", ...publicRules },
+      { userAgent: "GPTBot", ...publicRules },
+      { userAgent: "ChatGPT-User", ...publicRules },
+      { userAgent: "Bingbot", ...publicRules },
+      { userAgent: "Googlebot", ...publicRules },
     ],
-    sitemap: `${siteUrl}/sitemap.xml`,
+    sitemap: `${SITE_URL}/sitemap.xml`,
   };
 }

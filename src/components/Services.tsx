@@ -1,6 +1,8 @@
+import Link from "next/link";
 import { Code2, Target, Sparkles, BarChart3, ShoppingBag } from "lucide-react";
 import { services } from "@/lib/content";
 import { FadeIn } from "@/components/FadeIn";
+import { publicPages } from "@/lib/site";
 
 const iconMap = {
   code: Code2,
@@ -20,9 +22,10 @@ export function Services() {
             Web, app &amp; Shopify development
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-muted">
-            Since 2012 we&apos;ve helped businesses in Burlington, Hamilton,
-            Brantford, and St. Catharines with strategy, design, development,
-            and launch — one team that owns the full stack.
+            Since 2012 we&apos;ve handled strategy, design, development, and
+            launch for businesses in Hamilton, Burlington, Oakville, St.
+            Catharines, and the Niagara region — one small team that owns the
+            full stack.
           </p>
         </FadeIn>
 
@@ -41,11 +44,37 @@ export function Services() {
                   <p className="mt-3 leading-relaxed text-muted">
                     {service.description}
                   </p>
+                  {"href" in service && service.href ? (
+                    <Link
+                      href={service.href}
+                      className="mt-4 inline-flex text-sm font-semibold text-accent underline-offset-2 hover:underline"
+                    >
+                      Learn more
+                    </Link>
+                  ) : null}
                 </div>
               </FadeIn>
             );
           })}
         </div>
+
+        <nav aria-label="Service areas" className="mt-12">
+          <p className="mb-4 text-center text-sm font-semibold text-foreground">
+            Where we work
+          </p>
+          <ul className="flex flex-wrap justify-center gap-3">
+            {publicPages.map((page) => (
+              <li key={page.href}>
+                <Link
+                  href={page.href}
+                  className="inline-flex rounded-full border border-border bg-background px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-accent/30"
+                >
+                  {page.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
     </section>
   );

@@ -80,3 +80,16 @@ body {
 section[id] {
   scroll-margin-top: 6rem;
 }
+
+.faq-summary {
+  list-style: none;
+}
+
+.faq-summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}

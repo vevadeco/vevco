@@ -1,10 +1,3 @@
-export const serviceAreas = [
-  "Burlington",
-  "Hamilton",
-  "Brantford",
-  "St. Catharines",
-] as const;
-
 export const products = [
   {
     id: "floorhub",
@@ -60,7 +53,7 @@ export const services = [
   {
     title: "Web & App Development",
     description:
-      "Custom websites, web applications, and mobile-ready apps for businesses in Burlington, Hamilton, Brantford, and St. Catharines — built around how you actually operate.",
+      "Custom websites and web applications for businesses in Hamilton, Burlington, Oakville, St. Catharines, and the Niagara region — built around how you operate.",
     icon: "code",
   },
   {
@@ -68,6 +61,7 @@ export const services = [
     description:
       "Theme builds, custom Shopify apps, migrations, and conversion-focused storefronts that sell — from launch to scale.",
     icon: "shopping",
+    href: "/shopify-development",
   },
   {
     title: "Lead Generation Systems",
@@ -113,7 +107,7 @@ export const process = [
 export const testimonials = [
   {
     quote:
-      "VevadeCo built our entire lead system from scratch. Quote requests doubled in the first month and our team finally has one place to manage every lead.",
+      "Vevade built our entire lead system from scratch. Quote requests doubled in the first month and our team finally has one place to manage every lead.",
     name: "Earl's Landscaping",
     role: "Hamilton, ON",
   },
@@ -133,39 +127,39 @@ export const testimonials = [
 
 export const faqs = [
   {
-    question: "What types of projects does VevadeCo take on?",
+    question: "What types of projects does Vevade take on?",
     answer:
-      "We specialize in web development, app development, Shopify development, lead generation systems, AI-powered tools, and marketing automation. If you need software built around your business — not the other way around — we're a fit.",
+      "We design and build custom websites, web apps, Shopify stores, and lead systems. Since 2012 the work has included marketing sites, storefronts, and tools shaped around how a business actually operates. If you need a template with a logo dropped in, we are probably not the right studio.",
   },
   {
-    question: "Do you serve Burlington, Hamilton, Brantford, and St. Catharines?",
+    question: "Which cities do you serve?",
     answer:
-      "Yes. We've been operating since 2012 and regularly partner with businesses across Burlington, Hamilton, Brantford, and St. Catharines for web development, app development, and Shopify projects — while also supporting clients beyond Southern Ontario.",
+      "We are a Hamilton-area studio and regularly work with businesses in Hamilton, Burlington, Oakville, St. Catharines, and the Niagara region. Most projects run over video. In-person meetings in Hamilton are available when they help. Email sales@vevade.com or call 289-855-0968.",
+  },
+  {
+    question: "How much does a website or Shopify project cost?",
+    answer:
+      "Projects start at $1,999 CAD for a focused website or Shopify setup. Larger stores and custom web apps are quoted as a fixed scope after a short discovery call. Ongoing updates are $70/hour. You get a written proposal before any build starts.",
   },
   {
     question: "Can you help with Shopify stores and custom Shopify apps?",
     answer:
-      "Absolutely. Shopify development is a core specialty — from theme customization and store launches to custom apps, checkout improvements, and migrations that keep your catalog and SEO intact.",
+      "Yes. Shopify development covers new store setup, theme customization, migrations, checkout and shipping, and app integrations. If a custom workflow would fit a web app better than a store, we will say so before you pay for the wrong platform.",
   },
   {
     question: "How long does a typical project take?",
     answer:
-      "Lead generation sites and Shopify storefronts often launch in 2–4 weeks. SaaS platforms and complex apps typically run 6–12 weeks depending on scope. We'll give you an exact timeline in your proposal.",
+      "A straightforward brochure site or standard Shopify launch often takes a few weeks once the content and scope are confirmed. Custom applications and larger catalogues take longer. Every proposal includes a timeline.",
   },
   {
     question: "What's included in a proposal?",
     answer:
-      "Every proposal includes scope breakdown, milestone timeline, fixed pricing, tech stack recommendations, and post-launch support options. No surprise invoices.",
+      "Scope, a milestone timeline, fixed pricing, and what you will own when we finish: the domain, the hosting, and the code. No surprise retainers. Most proposals go out within 48 hours of the discovery call.",
   },
   {
-    question: "Do you work with startups and established businesses?",
+    question: "What happens after I submit a request?",
     answer:
-      "Both. We've built products from zero for new ventures and replaced legacy systems for established operators since 2012. Budget and timeline flex to match where you are.",
-  },
-  {
-    question: "What happens after I submit an RFP?",
-    answer:
-      "We review your brief within one business day and reach out to schedule a discovery call. Most proposals are delivered within 48 hours of that call.",
+      "We review the brief within one business day and schedule a free 30-minute discovery call. You can also start by emailing sales@vevade.com or calling 289-855-0968.",
   },
 ] as const;
 

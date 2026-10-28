@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ArrowUpRight, CheckCircle2, Loader2 } from "lucide-react";
+import { ContactDetails } from "@/components/ContactDetails";
 import { FadeIn } from "@/components/FadeIn";
 import {
   budgetRanges,
@@ -119,6 +120,12 @@ export function RFPForm() {
                   </li>
                 ))}
               </ul>
+
+              <p className="mt-8 text-sm text-muted">Prefer to write or call first?</p>
+              <ContactDetails stacked className="mt-2 text-sm" />
+              <p className="mt-3 text-xs text-muted">
+                Hamilton, ON service area · Since 2012
+              </p>
             </div>
 
             <form onSubmit={handleSubmit} className="p-8 sm:p-12 lg:p-14 relative">
@@ -135,7 +142,7 @@ export function RFPForm() {
                       value={form.name}
                       onChange={(e) => updateField("name", e.target.value)}
                       className="w-full rounded-xl border border-border bg-background px-4 py-2.5 text-sm outline-none transition-colors focus:border-accent focus:ring-2 focus:ring-accent/20"
-                      placeholder="Jane Smith"
+                      placeholder="Your name"
                     />
                   </div>
                   <div>
@@ -149,7 +156,7 @@ export function RFPForm() {
                       value={form.email}
                       onChange={(e) => updateField("email", e.target.value)}
                       className="w-full rounded-xl border border-border bg-background px-4 py-2.5 text-sm outline-none transition-colors focus:border-accent focus:ring-2 focus:ring-accent/20"
-                      placeholder="jane@company.com"
+                      placeholder="Your work email"
                     />
                   </div>
                 </div>
@@ -166,7 +173,7 @@ export function RFPForm() {
                       value={form.company}
                       onChange={(e) => updateField("company", e.target.value)}
                       className="w-full rounded-xl border border-border bg-background px-4 py-2.5 text-sm outline-none transition-colors focus:border-accent focus:ring-2 focus:ring-accent/20"
-                      placeholder="Acme Inc."
+                      placeholder="Your company"
                     />
                   </div>
                   <div>
@@ -179,7 +186,7 @@ export function RFPForm() {
                       value={form.phone}
                       onChange={(e) => updateField("phone", e.target.value)}
                       className="w-full rounded-xl border border-border bg-background px-4 py-2.5 text-sm outline-none transition-colors focus:border-accent focus:ring-2 focus:ring-accent/20"
-                      placeholder="(555) 123-4567"
+                      placeholder="Your phone number"
                     />
                   </div>
                 </div>

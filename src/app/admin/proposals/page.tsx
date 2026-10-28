@@ -3,8 +3,8 @@ import { ProposalBuilder } from "@/components/admin/ProposalBuilder";
 import { isAuthenticated } from "@/lib/auth";
 
 export const metadata = {
-  title: "Proposal Studio — VevadeCo",
-  robots: "noindex",
+  title: { absolute: "Proposal Studio — VevadeCo" },
+  robots: { index: false, follow: false },
 };
 
 type SearchParams = Promise<{
