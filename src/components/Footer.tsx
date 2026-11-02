@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ContactDetails } from "@/components/ContactDetails";
 import { Logo } from "@/components/Logo";
+import { ShopifyPartnerMark } from "@/components/ShopifyPartnerMark";
 import { publicPages } from "@/lib/site";
 
 export function Footer() {
@@ -76,8 +77,9 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 border-t border-border pt-8 text-sm text-muted">
-          <p className="text-center sm:text-left">
+        <div className="mt-10 flex flex-col items-center gap-6 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <ShopifyPartnerMark />
+          <p className="text-center text-sm text-muted sm:text-right">
             &copy; {new Date().getFullYear()} Vevade. Since 2012.
           </p>
         </div>

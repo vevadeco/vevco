@@ -1,4 +1,5 @@
 import { ServiceLanding, TextLink } from "@/components/ServiceLanding";
+import { ShopifyPartnerMark } from "@/components/ShopifyPartnerMark";
 import { pageMetadata } from "@/lib/seo";
 
 const title = "Shopify Development & E-commerce Stores | Vevade";
@@ -72,6 +73,10 @@ export default function ShopifyDevelopmentPage() {
         </>
       }
     >
+      <div className="flex justify-start">
+        <ShopifyPartnerMark />
+      </div>
+
       <section className="space-y-4">
         <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
           What a store build includes
