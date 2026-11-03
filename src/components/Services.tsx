@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Code2, Target, Sparkles, BarChart3, ShoppingBag } from "lucide-react";
 import { services } from "@/lib/content";
 import { FadeIn } from "@/components/FadeIn";
+import { ShopifyPartnerMark } from "@/components/ShopifyPartnerMark";
 import { publicPages } from "@/lib/site";
 
 const iconMap = {
@@ -56,6 +57,10 @@ export function Services() {
               </FadeIn>
             );
           })}
+        </div>
+
+        <div className="mt-12 flex justify-center">
+          <ShopifyPartnerMark />
         </div>
 
         <nav aria-label="Service areas" className="mt-12">
