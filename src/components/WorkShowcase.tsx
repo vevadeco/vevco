@@ -1,30 +1,63 @@
 import Image from "next/image";
 import {
+  Armchair,
   Layers,
   Leaf,
+  Sparkles,
   TrendingUp,
 } from "lucide-react";
 import { products } from "@/lib/content";
 import { FadeIn } from "@/components/FadeIn";
 
 const iconMap = {
+  armchair: Armchair,
   layers: Layers,
   leaf: Leaf,
+  sparkles: Sparkles,
   trending: TrendingUp,
 } as const;
+
+type Shot = { src: string; alt: string; width: number; height: number };
+
+function screenshotsFor(product: (typeof products)[number]): Shot[] {
+  if ("screenshots" in product && product.screenshots) {
+    return [...product.screenshots];
+  }
+  if (product.id === "floorhub") {
+    return [
+      {
+        src: "/images/floorhub-screenshot.png",
+        alt: "FloorHub dashboard — flooring business management platform",
+        width: 900,
+        height: 650,
+      },
+    ];
+  }
+  if (product.id === "profithunter") {
+    return [
+      {
+        src: "/images/profit-hunter-screenshot.png",
+        alt: "Profit Hunter dashboard — AI crypto trading platform",
+        width: 900,
+        height: 650,
+      },
+    ];
+  }
+  return [];
+}
 
 export function WorkShowcase() {
   return (
     <section id="work" className="section-sky scroll-mt-28 px-4 py-20 sm:px-6 sm:py-28">
       <div className="mx-auto max-w-6xl">
         <FadeIn className="mb-14 text-center">
-          <p className="section-eyebrow mb-3">Proven Results</p>
+          <p className="section-eyebrow mb-3">Our Work</p>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Custom products, real outcomes
+            Shopify stores and custom products
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-muted">
-            Each platform below was scoped, designed, and built from scratch for
-            a specific business — the kind of custom work we do for every client.
+            Selected client work, from Shopify storefronts to custom products
+            built around how a business operates.
           </p>
         </FadeIn>
 
@@ -32,14 +65,7 @@ export function WorkShowcase() {
           {products.map((product, index) => {
             const Icon = iconMap[product.icon];
             const isDark = product.id === "profithunter";
-            const hasScreenshot =
-              product.id === "floorhub" || product.id === "profithunter";
-            const screenshotSrc =
-              product.id === "floorhub"
-                ? "/images/floorhub-screenshot.png"
-                : product.id === "profithunter"
-                  ? "/images/profit-hunter-screenshot.png"
-                  : null;
+            const screenshots = screenshotsFor(product);
             const reversed = index % 2 === 1;
 
             return (
@@ -50,24 +76,27 @@ export function WorkShowcase() {
                   }`}
                 >
                   {/* Screenshot or placeholder */}
-                  <div className="relative">
-                    {hasScreenshot && screenshotSrc ? (
-                      <div
-                        className={`card-lift overflow-hidden rounded-2xl border shadow-xl ${
-                          isDark
-                            ? "border-gray-800 shadow-cyan-500/10"
-                            : "border-blue-100 shadow-blue-200/60"
-                        }`}
-                      >
-                        <Image
-                          src={screenshotSrc}
-                          alt={`${product.name} product screenshot`}
-                          width={900}
-                          height={650}
-                          sizes="(max-width: 1024px) 100vw, 50vw"
-                          className="w-full object-cover object-top"
-                        />
-                      </div>
+                  <div className="relative grid gap-4">
+                    {screenshots.length > 0 ? (
+                      screenshots.map((shot) => (
+                        <div
+                          key={shot.src}
+                          className={`card-lift overflow-hidden rounded-2xl border shadow-xl ${
+                            isDark
+                              ? "border-gray-800 shadow-cyan-500/10"
+                              : "border-blue-100 shadow-blue-200/60"
+                          }`}
+                        >
+                          <Image
+                            src={shot.src}
+                            alt={shot.alt}
+                            width={shot.width}
+                            height={shot.height}
+                            sizes="(max-width: 1024px) 100vw, 50vw"
+                            className="h-auto w-full"
+                          />
+                        </div>
+                      ))
                     ) : (
                       <div className="overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-green-50 to-emerald-50 p-8 shadow-lg">
                         <div className="rounded-xl border border-green-200 bg-white p-6">
@@ -109,7 +138,9 @@ export function WorkShowcase() {
                         className={`rounded-full px-3 py-1 text-xs font-medium ${
                           isDark
                             ? "bg-gray-800 text-gray-300"
-                            : "bg-gray-100 text-muted"
+                            : product.category === "Shopify"
+                              ? "bg-violet-100 text-violet-900"
+                              : "bg-gray-100 text-muted"
                         }`}
                       >
                         {product.category}
@@ -144,6 +175,22 @@ export function WorkShowcase() {
                         </li>
                       ))}
                     </ul>
+                    {"links" in product && product.links ? (
+                      <ul className="mt-6 space-y-2">
+                        {product.links.map((link) => (
+                          <li key={link.href}>
+                            <a
+                              href={link.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-sm font-semibold text-accent underline-offset-2 hover:underline"
+                            >
+                              {link.label}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
                   </div>
                 </article>
               </FadeIn>
