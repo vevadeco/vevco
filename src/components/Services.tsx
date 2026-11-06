@@ -13,9 +13,32 @@ const iconMap = {
   chart: BarChart3,
 } as const;
 
+const cardTones = [
+  {
+    icon: "bg-blue-100 text-blue-800 group-hover:bg-blue-800 group-hover:text-white",
+    bar: "bg-blue-700",
+  },
+  {
+    icon: "bg-violet-100 text-violet-800 group-hover:bg-violet-800 group-hover:text-white",
+    bar: "bg-violet-700",
+  },
+  {
+    icon: "bg-teal-100 text-teal-800 group-hover:bg-teal-800 group-hover:text-white",
+    bar: "bg-teal-800",
+  },
+  {
+    icon: "bg-amber-100 text-amber-900 group-hover:bg-amber-800 group-hover:text-white",
+    bar: "bg-amber-700",
+  },
+  {
+    icon: "bg-sky-100 text-sky-900 group-hover:bg-sky-800 group-hover:text-white",
+    bar: "bg-sky-700",
+  },
+] as const;
+
 export function Services() {
   return (
-    <section id="services" className="scroll-mt-28 bg-surface px-4 py-20 sm:px-6 sm:py-28">
+    <section id="services" className="section-violet scroll-mt-28 px-4 py-20 sm:px-6 sm:py-28">
       <div className="mx-auto max-w-6xl">
         <FadeIn className="mb-14 text-center">
           <p className="section-eyebrow mb-3">What We Do</p>
@@ -33,10 +56,14 @@ export function Services() {
         <div className="grid gap-6 sm:grid-cols-2">
           {services.map((service, i) => {
             const Icon = iconMap[service.icon];
+            const tone = cardTones[i % cardTones.length];
             return (
               <FadeIn key={service.title} delay={i * 80}>
-                <div className="group h-full rounded-2xl border border-border bg-background p-8 transition-all hover:border-accent/20 hover:shadow-md">
-                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-accent transition-colors group-hover:bg-accent group-hover:text-white">
+                <div className="card-lift group relative h-full overflow-hidden rounded-2xl border border-border bg-white p-8 shadow-sm">
+                  <div className={`absolute inset-x-0 top-0 h-1 ${tone.bar}`} />
+                  <div
+                    className={`mb-5 flex h-12 w-12 items-center justify-center rounded-xl transition-colors ${tone.icon}`}
+                  >
                     <Icon className="h-6 w-6" />
                   </div>
                   <h3 className="text-xl font-bold tracking-tight">
@@ -72,7 +99,7 @@ export function Services() {
               <li key={page.href}>
                 <Link
                   href={page.href}
-                  className="inline-flex rounded-full border border-border bg-background px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-accent/30"
+                  className="inline-flex rounded-full border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-foreground shadow-sm transition-colors hover:border-blue-500 hover:bg-blue-50 hover:text-blue-900"
                 >
                   {page.label}
                 </Link>

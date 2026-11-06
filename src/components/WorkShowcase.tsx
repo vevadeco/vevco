@@ -15,7 +15,7 @@ const iconMap = {
 
 export function WorkShowcase() {
   return (
-    <section id="work" className="scroll-mt-28 px-4 py-20 sm:px-6 sm:py-28">
+    <section id="work" className="section-sky scroll-mt-28 px-4 py-20 sm:px-6 sm:py-28">
       <div className="mx-auto max-w-6xl">
         <FadeIn className="mb-14 text-center">
           <p className="section-eyebrow mb-3">Proven Results</p>
@@ -53,10 +53,10 @@ export function WorkShowcase() {
                   <div className="relative">
                     {hasScreenshot && screenshotSrc ? (
                       <div
-                        className={`overflow-hidden rounded-2xl border shadow-xl ${
+                        className={`card-lift overflow-hidden rounded-2xl border shadow-xl ${
                           isDark
                             ? "border-gray-800 shadow-cyan-500/10"
-                            : "border-border shadow-indigo-100/50"
+                            : "border-blue-100 shadow-blue-200/60"
                         }`}
                       >
                         <Image
@@ -121,7 +121,7 @@ export function WorkShowcase() {
                     </h3>
                     <p
                       className={`mt-2 text-base font-medium ${
-                        isDark ? "text-cyan-400" : "text-accent"
+                        isDark ? "text-cyan-800" : "text-accent"
                       }`}
                     >
                       {product.tagline}

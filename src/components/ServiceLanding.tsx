@@ -93,13 +93,13 @@ export function ServiceLanding({
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="#rfp"
-                className="inline-flex items-center justify-center rounded-full bg-foreground px-8 py-3.5 text-base font-semibold text-white transition-colors hover:bg-gray-800"
+                className="btn-primary"
               >
                 Request a free proposal
               </Link>
               <a
                 href="tel:+1-289-855-0968"
-                className="inline-flex items-center justify-center rounded-full border border-border bg-white/80 px-8 py-3.5 text-base font-semibold text-foreground transition-colors hover:bg-white"
+                className="btn-secondary"
               >
                 Call 289-855-0968
               </a>

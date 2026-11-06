@@ -1,15 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f9fafb;
-  --foreground: #111827;
-  --muted: #6b7280;
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
+  --background: #f3f6fb;
+  --foreground: #0f172a;
+  --muted: #475569;
+  --accent: #1d4ed8;
+  --accent-hover: #1e3a8a;
+  --accent-2: #0f766e;
+  --accent-3: #6d28d9;
   --surface: #ffffff;
-  --border: #e5e7eb;
-  --hero-from: #eef2ff;
-  --hero-to: #f9fafb;
+  --border: #d5deea;
+  --hero-from: #dbeafe;
+  --hero-mid: #ddd6fe;
+  --hero-to: #cffafe;
 }
 
 @theme inline {
@@ -17,6 +20,8 @@
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-accent-3: var(--accent-3);
   --color-surface: var(--surface);
   --color-border: var(--border);
   --font-sans: var(--font-inter);
@@ -39,6 +44,11 @@ html {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+
+  .btn-primary:hover,
+  .card-lift:hover {
+    transform: none;
+  }
 }
 
 body {
@@ -48,17 +58,106 @@ body {
 }
 
 .hero-gradient {
-  background: linear-gradient(135deg, var(--hero-from) 0%, var(--hero-to) 50%, #ffffff 100%);
+  background:
+    radial-gradient(ellipse 70% 55% at 100% 0%, rgba(109, 40, 217, 0.22), transparent 58%),
+    radial-gradient(ellipse 60% 50% at 0% 100%, rgba(14, 165, 233, 0.22), transparent 52%),
+    linear-gradient(135deg, var(--hero-from) 0%, var(--hero-mid) 46%, var(--hero-to) 78%, #ffffff 100%);
+}
+
+.section-sky {
+  background:
+    radial-gradient(ellipse 55% 70% at 0% 0%, rgba(37, 99, 235, 0.12), transparent 62%),
+    linear-gradient(180deg, #f8fbff 0%, #e8f2ff 100%);
+}
+
+.section-violet {
+  background:
+    radial-gradient(ellipse 50% 65% at 100% 0%, rgba(109, 40, 217, 0.14), transparent 58%),
+    linear-gradient(180deg, #f7f5ff 0%, #eef2ff 100%);
+}
+
+.section-teal {
+  background:
+    radial-gradient(ellipse 50% 70% at 0% 100%, rgba(15, 118, 110, 0.16), transparent 58%),
+    linear-gradient(180deg, #f0fdfa 0%, #f8fafc 100%);
 }
 
 .glass-nav {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
 
 .section-eyebrow {
-  @apply text-xs font-semibold uppercase tracking-widest text-accent;
+  @apply inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-blue-800;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  padding: 0.875rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-image: linear-gradient(135deg, #1d4ed8 0%, #6d28d9 100%);
+  box-shadow: 0 12px 24px -14px rgba(29, 78, 216, 0.9);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-image 0.15s ease;
+}
+
+.btn-primary:hover {
+  background-image: linear-gradient(135deg, #1e40af 0%, #5b21b6 100%);
+  box-shadow: 0 16px 28px -12px rgba(91, 33, 182, 0.75);
+  transform: translateY(-1px);
+}
+
+.btn-primary:focus-visible {
+  outline: 2px solid #1d4ed8;
+  outline-offset: 3px;
+}
+
+.btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(29, 78, 216, 0.35);
+  background: rgba(255, 255, 255, 0.92);
+  padding: 0.875rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0f172a;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-secondary:hover {
+  background: #eff6ff;
+  border-color: #1d4ed8;
+  color: #1e3a8a;
+}
+
+.btn-secondary:focus-visible {
+  outline: 2px solid #1d4ed8;
+  outline-offset: 3px;
+}
+
+.card-lift {
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.card-lift:hover {
+  transform: translateY(-4px);
+  border-color: #93c5fd;
+  box-shadow: 0 18px 40px -24px rgba(29, 78, 216, 0.55);
 }
 
 @keyframes fade-up {
