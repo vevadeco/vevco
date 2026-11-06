@@ -13,25 +13,25 @@ export function Header() {
         <div className="hidden items-center gap-8 md:flex">
           <Link
             href="/#work"
-            className="text-sm font-medium text-muted transition-colors hover:text-foreground"
+            className="text-sm font-medium text-muted transition-colors hover:text-accent"
           >
             Our Work
           </Link>
           <Link
             href="/#services"
-            className="text-sm font-medium text-muted transition-colors hover:text-foreground"
+            className="text-sm font-medium text-muted transition-colors hover:text-accent"
           >
             Services
           </Link>
           <Link
             href="/#process"
-            className="text-sm font-medium text-muted transition-colors hover:text-foreground"
+            className="text-sm font-medium text-muted transition-colors hover:text-accent"
           >
             Process
           </Link>
           <Link
             href="#faq"
-            className="text-sm font-medium text-muted transition-colors hover:text-foreground"
+            className="text-sm font-medium text-muted transition-colors hover:text-accent"
           >
             FAQ
           </Link>
@@ -39,7 +39,7 @@ export function Header() {
 
         <Link
           href="#rfp"
-          className="inline-flex items-center gap-1.5 rounded-full bg-accent px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-accent-hover"
+          className="btn-primary btn-sm"
         >
           Request Proposal
           <ArrowUpRight className="h-3.5 w-3.5" />

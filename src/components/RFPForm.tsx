@@ -96,7 +96,7 @@ export function RFPForm() {
     <section id="rfp" className="scroll-mt-28 px-4 py-20 sm:px-6 sm:py-28">
       <FadeIn>
       <div className="mx-auto max-w-6xl">
-        <div className="overflow-hidden rounded-3xl border border-border bg-surface shadow-sm">
+        <div className="overflow-hidden rounded-3xl border border-blue-200 bg-white shadow-lg shadow-blue-900/5">
           <div className="grid lg:grid-cols-2">
             <div className="hero-gradient p-8 sm:p-12 lg:p-14">
               <p className="section-eyebrow mb-3">Get Started</p>
@@ -290,7 +290,7 @@ export function RFPForm() {
                 <button
                   type="submit"
                   disabled={status === "loading"}
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent px-8 py-3.5 text-base font-semibold text-white transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto"
+                  className="btn-primary w-full disabled:opacity-60 sm:w-auto"
                 >
                   {status === "loading" ? (
                     <>

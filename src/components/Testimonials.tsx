@@ -3,7 +3,7 @@ import { FadeIn } from "@/components/FadeIn";
 
 export function Testimonials() {
   return (
-    <section className="bg-surface px-4 py-20 sm:px-6 sm:py-28">
+    <section className="bg-gradient-to-b from-white via-violet-50 to-white px-4 py-20 sm:px-6 sm:py-28">
       <div className="mx-auto max-w-6xl">
         <FadeIn className="mb-14 text-center">
           <p className="section-eyebrow mb-3">Client Results</p>
@@ -15,8 +15,12 @@ export function Testimonials() {
         <div className="grid gap-6 md:grid-cols-3">
           {testimonials.map((t, i) => (
             <FadeIn key={t.name} delay={i * 100}>
-              <blockquote className="flex h-full flex-col rounded-2xl border border-border bg-background p-8">
-                <p className="flex-1 leading-relaxed text-foreground/90">
+              <blockquote
+                className={`card-lift flex h-full flex-col rounded-2xl border border-border bg-white p-8 shadow-sm ${
+                  ["border-t-4 border-t-blue-700", "border-t-4 border-t-teal-700", "border-t-4 border-t-violet-700"][i]
+                }`}
+              >
+                <p className="flex-1 leading-relaxed text-foreground">
                   &ldquo;{t.quote}&rdquo;
                 </p>
                 <footer className="mt-6 border-t border-border pt-6">

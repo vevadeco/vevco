@@ -7,9 +7,9 @@ import { FadeIn } from "@/components/FadeIn";
 export function Hero() {
   return (
     <section className="hero-gradient relative overflow-hidden px-4 pb-8 pt-28 sm:px-6 sm:pb-16 sm:pt-36">
-      <div className="pointer-events-none absolute -top-32 right-0 h-[500px] w-[500px] rounded-full bg-indigo-200/40 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-0 left-0 h-96 w-96 rounded-full bg-violet-100/60 blur-3xl" />
-      <div className="pointer-events-none absolute right-1/4 top-1/3 h-64 w-64 rounded-full bg-cyan-100/40 blur-3xl" />
+      <div className="pointer-events-none absolute -top-24 right-0 h-[520px] w-[520px] rounded-full bg-blue-300/50 blur-3xl" />
+      <div className="pointer-events-none absolute bottom-0 left-0 h-96 w-96 rounded-full bg-violet-300/45 blur-3xl" />
+      <div className="pointer-events-none absolute right-1/4 top-1/3 h-64 w-64 rounded-full bg-cyan-300/40 blur-3xl" />
 
       <div className="relative mx-auto max-w-6xl">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
@@ -18,7 +18,7 @@ export function Hero() {
             <FadeIn>
               <h1 className="text-4xl font-extrabold leading-[1.08] tracking-tight text-foreground sm:text-5xl lg:text-[3.25rem]">
                 Web, app, and{" "}
-                <span className="bg-gradient-to-r from-accent via-violet-600 to-cyan-500 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-blue-800 via-violet-800 to-teal-800 bg-clip-text text-transparent">
                   Shopify development
                 </span>{" "}
                 for Hamilton, Burlington, and Niagara
@@ -36,17 +36,11 @@ export function Hero() {
 
             <FadeIn delay={200}>
               <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row lg:justify-start">
-                <Link
-                  href="#rfp"
-                  className="inline-flex items-center gap-2 rounded-full bg-foreground px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-gray-900/10 transition-all hover:bg-gray-800 hover:shadow-xl"
-                >
+                <Link href="#rfp" className="btn-primary">
                   Get your free proposal
                   <ArrowUpRight className="h-4 w-4" />
                 </Link>
-                <Link
-                  href="#work"
-                  className="inline-flex items-center gap-2 rounded-full border border-border bg-white/80 px-8 py-3.5 text-base font-semibold text-foreground backdrop-blur transition-colors hover:bg-white"
-                >
+                <Link href="#work" className="btn-secondary">
                   See our work
                 </Link>
               </div>
@@ -54,9 +48,13 @@ export function Hero() {
 
             <FadeIn delay={300}>
               <div className="mt-12 grid grid-cols-3 gap-4 border-t border-border/60 pt-8 lg:max-w-md">
-                {stats.map((stat) => (
+                {stats.map((stat, index) => (
                   <div key={stat.label}>
-                    <div className="text-2xl font-bold text-foreground sm:text-3xl">
+                    <div
+                      className={`text-2xl font-bold sm:text-3xl ${
+                        ["text-blue-800", "text-violet-800", "text-teal-800"][index]
+                      }`}
+                    >
                       {stat.value}
                     </div>
                     <div className="mt-0.5 text-xs text-muted sm:text-sm">

@@ -6,7 +6,11 @@ import { publicPages } from "@/lib/site";
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-surface px-4 py-12 sm:px-6">
+    <footer className="border-t border-blue-100 bg-white px-4 py-12 sm:px-6">
+      <div
+        className="mx-auto mb-10 h-1.5 max-w-6xl rounded-full bg-gradient-to-r from-blue-700 via-violet-700 to-teal-700"
+        aria-hidden="true"
+      />
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-10 md:grid-cols-3">
           <div>

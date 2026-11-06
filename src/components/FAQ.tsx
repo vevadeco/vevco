@@ -26,16 +26,22 @@ export function FAQ() {
             const isOpen = openIndex === index;
             return (
               <FadeIn key={faq.question} delay={index * 60}>
-                <div className="overflow-hidden rounded-2xl border border-border bg-surface">
+                <div
+                  className={`overflow-hidden rounded-2xl border bg-white transition-colors ${
+                    isOpen
+                      ? "border-blue-300 shadow-sm shadow-blue-900/5"
+                      : "border-border hover:border-blue-200"
+                  }`}
+                >
                   <button
                     type="button"
                     onClick={() => setOpenIndex(isOpen ? null : index)}
-                    className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
+                    className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                     aria-expanded={isOpen}
                   >
                     <span className="font-semibold">{faq.question}</span>
                     <ChevronDown
-                      className={`h-5 w-5 shrink-0 text-muted transition-transform ${
+                      className={`h-5 w-5 shrink-0 text-blue-800 transition-transform ${
                         isOpen ? "rotate-180" : ""
                       }`}
                     />

@@ -5,7 +5,7 @@ import { FadeIn } from "@/components/FadeIn";
 
 export function Process() {
   return (
-    <section id="process" className="scroll-mt-28 px-4 py-20 sm:px-6 sm:py-28">
+    <section id="process" className="section-teal scroll-mt-28 px-4 py-20 sm:px-6 sm:py-28">
       <div className="mx-auto max-w-6xl">
         <FadeIn className="mb-14 text-center">
           <p className="section-eyebrow mb-3">How It Works</p>
@@ -25,9 +25,13 @@ export function Process() {
                 {index < process.length - 1 && (
                   <div className="absolute right-0 top-8 hidden h-px w-full translate-x-1/2 bg-border md:block" />
                 )}
-                <div className="h-full rounded-2xl border border-border bg-surface p-8">
-                  <div className="mb-4 text-sm font-bold text-accent">
-                    Step {item.step}
+                <div className="card-lift h-full rounded-2xl border border-teal-100 bg-white p-8 shadow-sm">
+                  <div
+                    className={`mb-4 inline-flex h-11 min-w-11 items-center justify-center rounded-full px-2 text-xs font-bold text-white ${
+                      ["bg-teal-800", "bg-blue-800", "bg-violet-800"][index]
+                    }`}
+                  >
+                    {item.step}
                   </div>
                   <h3 className="text-xl font-bold tracking-tight">
                     {item.title}
@@ -42,10 +46,7 @@ export function Process() {
         </div>
 
         <FadeIn delay={300} className="mt-12 text-center">
-          <Link
-            href="#rfp"
-            className="inline-flex items-center gap-2 rounded-full bg-foreground px-8 py-3.5 text-base font-semibold text-white transition-colors hover:bg-gray-800"
-          >
+          <Link href="#rfp" className="btn-primary">
             Start with a free proposal
             <ArrowUpRight className="h-4 w-4" />
           </Link>
