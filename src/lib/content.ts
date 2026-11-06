@@ -47,6 +47,78 @@ export const products = [
     icon: "trending",
     category: "AI Trading",
   },
+  {
+    id: "valencia",
+    name: "Valencia Theater Seating",
+    tagline: "Shopify stores and a custom 3D seating configurator",
+    description:
+      "Shopify stores for the US, UK, and Canada markets. The configurator shows a live preview, and configuration-driven pricing carries into the Shopify cart through line-item properties.",
+    features: [
+      "Seat model, materials, and colours, including two-tone, stitching, and embroidery",
+      "Lighting and accessory finishes, and row layout with risers",
+      "Model display stabilized with dedicated model hosting",
+      "Extended-warranty widget and reviews with Amazon imports",
+      "Pay-over-time and crypto payments",
+      "Custom affiliate tracking and exit-intent email capture",
+    ],
+    accent: "#9f1239",
+    accentBg: "#fff1f2",
+    icon: "armchair",
+    category: "Shopify",
+    screenshots: [
+      {
+        src: "/images/valencia-theater-seating.png",
+        alt: "Valencia Theater Seating Canada store homepage",
+        width: 1440,
+        height: 1000,
+      },
+      {
+        src: "/images/valencia-oslo-3d.png",
+        alt: "Oslo 3D seating configurator on the Valencia Theater Seating US store",
+        width: 1440,
+        height: 1000,
+      },
+    ],
+    links: [
+      {
+        href: "https://ca.valenciatheaterseating.com",
+        label: "Canada store",
+      },
+      {
+        href: "https://us.valenciatheaterseating.com/products/oslo-3d",
+        label: "Oslo 3D configurator",
+      },
+    ],
+  },
+  {
+    id: "fiera",
+    name: "Fièra Cosmetics",
+    tagline: "Custom Shopify theme",
+    description:
+      "A custom Shopify theme, with PDP templates and custom snippets, kept in GitHub so the theme could be reviewed and rolled back.",
+    features: [
+      "QA, performance, and conversion work",
+      "Landing pages and BFCM funnels",
+    ],
+    accent: "#6d28d9",
+    accentBg: "#f5f3ff",
+    icon: "sparkles",
+    category: "Shopify",
+    screenshots: [
+      {
+        src: "/images/fiera-cosmetics.png",
+        alt: "Fièra Cosmetics homepage",
+        width: 1440,
+        height: 1000,
+      },
+    ],
+    links: [
+      {
+        href: "https://fieracosmetics.com",
+        label: "fieracosmetics.com",
+      },
+    ],
+  },
 ] as const;
 
 export const services = [
