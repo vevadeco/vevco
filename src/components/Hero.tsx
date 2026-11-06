@@ -18,7 +18,7 @@ export function Hero() {
             <FadeIn>
               <h1 className="text-4xl font-extrabold leading-[1.08] tracking-tight text-foreground sm:text-5xl lg:text-[3.25rem]">
                 Web, app, and{" "}
-                <span className="bg-gradient-to-r from-accent via-violet-600 to-cyan-500 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-blue-800 via-violet-800 to-teal-800 bg-clip-text text-transparent">
                   Shopify development
                 </span>{" "}
                 for Hamilton, Burlington, and Niagara
