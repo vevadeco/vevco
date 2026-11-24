@@ -33,6 +33,17 @@ export const publicPages = [
   },
 ] as const;
 
+export const caseStudyPages = [
+  {
+    href: "/work/earls-landscaping-lead-engine",
+    label: "Earl's Landscaping lead engine",
+  },
+  {
+    href: "/work/floorbase",
+    label: "FloorBase",
+  },
+] as const;
+
 type Faq = {
   question: string;
   answer: string;
