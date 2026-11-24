@@ -27,7 +27,7 @@ function screenshotsFor(product: (typeof products)[number]): Shot[] {
     return [
       {
         src: "/images/floorhub-screenshot.png",
-        alt: "FloorHub dashboard — flooring business management platform",
+        alt: "FloorBase dashboard — flooring business management platform",
         width: 900,
         height: 650,
       },

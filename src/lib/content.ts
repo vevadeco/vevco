@@ -1,7 +1,7 @@
 export const products = [
   {
     id: "floorhub",
-    name: "FloorHub",
+    name: "FloorBase",
     tagline: "All-in-one flooring business management",
     description:
       "Inventory, invoicing, lead capture, and contractor management — built for flooring retailers who need one dashboard to run the whole operation.",
@@ -14,6 +14,12 @@ export const products = [
     accentBg: "#fff7ed",
     icon: "layers",
     category: "SaaS Platform",
+    links: [
+      {
+        href: "https://www.floorbase.io",
+        label: "www.floorbase.io",
+      },
+    ],
   },
   {
     id: "earls",
@@ -185,7 +191,7 @@ export const testimonials = [
   },
   {
     quote:
-      "FloorHub replaced four separate tools we were duct-taping together. Invoicing, inventory, and Facebook leads — all in one dashboard our staff actually uses.",
+      "FloorBase replaced four separate tools we were duct-taping together. Invoicing, inventory, and Facebook leads — all in one dashboard our staff actually uses.",
     name: "Flooring Retailer",
     role: "Ontario, Canada",
   },

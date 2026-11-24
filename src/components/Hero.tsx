@@ -69,11 +69,11 @@ export function Hero() {
           {/* Product screenshots */}
           <FadeIn delay={150} direction="left" className="relative mx-auto w-full max-w-lg lg:max-w-none">
             <div className="relative aspect-[4/3] w-full">
-              {/* FloorHub - back layer */}
+              {/* FloorBase - back layer */}
               <div className="absolute left-0 top-0 w-[85%] overflow-hidden rounded-2xl border border-border bg-white shadow-2xl shadow-indigo-200/40 transition-transform duration-500 hover:-translate-y-1">
                 <Image
                   src="/images/floorhub-screenshot.png"
-                  alt="FloorHub dashboard — flooring business management platform"
+                  alt="FloorBase dashboard — flooring business management platform"
                   width={800}
                   height={600}
                   sizes="(max-width: 1024px) 85vw, 42vw"
