@@ -17,7 +17,7 @@ import { faqPageJsonLd, SITE_URL } from "@/lib/site";
 
 const title = "FloorBase: Flooring Store Software Built by Vevade";
 const description =
-  "See how Vevade built FloorBase for Canadian flooring stores: leads, square-foot quotes, invoices with provincial tax, purchase orders, installs and commissions.";
+  "See how Vevade built FloorBase for Canadian flooring stores: leads, square-foot quotes, tax-ready invoices, purchase orders, installs and commissions.";
 const h1 = "One system from first enquiry to paid invoice: FloorBase";
 
 const faqs = [
