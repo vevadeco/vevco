@@ -2,9 +2,9 @@ import Link from "next/link";
 import { ContactDetails } from "@/components/ContactDetails";
 import { Logo } from "@/components/Logo";
 import { ShopifyPartnerMark } from "@/components/ShopifyPartnerMark";
-import { publicPages } from "@/lib/site";
+import { caseStudyPages, CONTACT_EMAIL, publicPages } from "@/lib/site";
 
-export function Footer() {
+export function Footer({ emailOnly = false }: { emailOnly?: boolean }) {
   return (
     <footer className="border-t border-blue-100 bg-white px-4 py-12 sm:px-6">
       <div
@@ -23,7 +23,16 @@ export function Footer() {
               Since 2012.
             </p>
             <p className="mt-4 text-sm text-muted">Hamilton, ON · service area</p>
-            <ContactDetails stacked className="mt-2 text-sm" />
+            {emailOnly ? (
+              <a
+                className="mt-2 inline-block text-sm font-semibold text-foreground underline-offset-2 hover:underline"
+                href={`mailto:${CONTACT_EMAIL}`}
+              >
+                {CONTACT_EMAIL}
+              </a>
+            ) : (
+              <ContactDetails stacked className="mt-2 text-sm" />
+            )}
           </div>
 
           <div>
@@ -68,6 +77,19 @@ export function Footer() {
             <p className="text-sm font-semibold text-foreground">Services and areas</p>
             <ul className="mt-3 space-y-2 text-sm">
               {publicPages.map((page) => (
+                <li key={page.href}>
+                  <Link
+                    href={page.href}
+                    className="text-muted transition-colors hover:text-foreground"
+                  >
+                    {page.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-8 text-sm font-semibold text-foreground">Case studies</p>
+            <ul className="mt-3 space-y-2 text-sm">
+              {caseStudyPages.map((page) => (
                 <li key={page.href}>
                   <Link
                     href={page.href}

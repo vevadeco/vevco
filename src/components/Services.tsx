@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Code2, Target, Sparkles, BarChart3, ShoppingBag } from "lucide-react";
 import { services } from "@/lib/content";
 import { FadeIn } from "@/components/FadeIn";
+import { LeadEngineBlurb } from "@/components/LeadEngineBlurb";
 import { ShopifyPartnerMark } from "@/components/ShopifyPartnerMark";
 import { publicPages } from "@/lib/site";
 
@@ -85,6 +86,8 @@ export function Services() {
             );
           })}
         </div>
+
+        <LeadEngineBlurb />
 
         <div className="mt-12 flex justify-center">
           <ShopifyPartnerMark />
